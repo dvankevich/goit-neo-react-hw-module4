@@ -6,13 +6,16 @@ function App() {
   const searchImages = async (query) => {
     try {
       const images = await fetchImages(query);
-      console.log(images);
+      return images;
     } catch (error) {
       console.error("Failed to retrieve images:", error);
     }
   };
 
-  console.log(searchImages("grogu"));
+  // for testing purposes
+  searchImages("grogu").then((images) => {
+    console.log(images);
+  });
 
   return (
     <>
