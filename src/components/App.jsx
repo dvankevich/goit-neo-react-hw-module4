@@ -1,5 +1,5 @@
 import "./App.css";
-
+import SearchBar from "./SearchBar/SearchBar.jsx";
 import { fetchImages } from "../api/unsplash";
 
 function App() {
@@ -17,9 +17,13 @@ function App() {
     console.log(images);
   });
 
+  const handleSearch = (searchTerm) => {
+    console.log("Search submitted with query:", searchTerm);
+  };
+
   return (
     <>
-      <h1>goit-neo-react-hw-module4</h1>
+      <SearchBar onSearch={handleSearch} />
     </>
   );
 }
