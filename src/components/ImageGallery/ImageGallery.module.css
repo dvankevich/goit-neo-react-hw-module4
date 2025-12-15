@@ -7,7 +7,7 @@
 }
 
 .imagesListItem {
-  width: calc((100% - 40px - 5px) / 5);
+  width: calc((100% - 30px - 4px) / 4);
   overflow: hidden;
   border: 1px solid #eaeaea;
   border-radius: 8px;
@@ -22,7 +22,19 @@
 
 .imagesListItem img {
   width: 100%;
-  height: 150px;
+  height: 175px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
+}
+
+@media (max-width: 768px) {
+  .imagesListItem {
+    width: calc((100% - 30px) / 3);
+  }
+}
+
+@media (max-width: 480px) {
+  .imagesListItem {
+    width: calc((100% - 20px) / 2);
+  }
 }

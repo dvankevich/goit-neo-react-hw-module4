@@ -1,0 +1,36 @@
+  .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+    padding: 10px;
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .img {
+    max-width: 100%;
+    max-height: 60vh;
+    height: auto;
+  }
+
+  .h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
