@@ -16,6 +16,7 @@ const ImageModal = ({ isOpen, closeModal, img }) => {
         <img
           className={css.img}
           src={img.urls.regular}
+          // src={img.urls.full}
           alt={img.alt_description}
         />
       </div>
