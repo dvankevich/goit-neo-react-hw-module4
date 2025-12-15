@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar/SearchBar.jsx";
 import { fetchImages } from "../api/unsplash";
+import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -42,6 +43,7 @@ function App() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
+      {results.length > 0 && <ImageGallery images={results} />}
     </>
   );
 }
