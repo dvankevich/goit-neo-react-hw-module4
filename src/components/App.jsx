@@ -84,6 +84,10 @@ function App() {
 
   const isEmtpyResults = !loading && query && results.length === 0;
 
+  useEffect(() => {
+    console.log("Current results:", results);
+  }, [results]);
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
