@@ -6,6 +6,7 @@ import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ImageModal from "./ImageModal/ImageModal";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import Loader from "../Loader/Loader";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -64,16 +65,22 @@ function App() {
     setImageModalIsOpen(false);
   }
 
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const isEmtpyResults = !loading && query && results.length === 0;
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
       {results.length > 0 && (
         <ImageGallery images={results} openModal={openModal} />
       )}
-
+      {page < totalPages && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
       {loading && <Loader />}
       {error && <ErrorMessage errorMsg={errorMessage} />}
-
+      {isEmtpyResults && <p>No images found</p>}
       {imageModalIsOpen && (
         <ImageModal
           isOpen={imageModalIsOpen}
