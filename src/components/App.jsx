@@ -30,10 +30,22 @@ function App() {
         setLoading(true);
         setError(false);
         setErrorMessage("");
+
         const apiResponse = await fetchImages(query, page);
+        // resolve the key duplication issue
+        // Encountered two children with the same key, `7Coo7BwvxmQ`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
         setResults((prevResults) => {
-          return [...prevResults, ...apiResponse.results];
+          // 1. Беремо нові результати з API
+          const newImages = apiResponse.results;
+          // 2. Відфільтровуємо лише ті, ID яких ще немає у нашому стані
+          const uniqueImages = newImages.filter(
+            (newImg) => !prevResults.some((oldImg) => oldImg.id === newImg.id)
+          );
+          // 3. Додаємо лише унікальні фото до попереднього списку
+          return [...prevResults, ...uniqueImages];
         });
+
         setTotalPages(apiResponse.total_pages);
       } catch (error) {
         setError(true);
@@ -46,7 +58,7 @@ function App() {
   }, [query, page]);
 
   // for testing purposes
-  useState(() => {
+  useEffect(() => {
     console.log(results);
   }, [results]);
 
