@@ -7,6 +7,7 @@ import ImageModal from "./ImageModal/ImageModal";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import Loader from "../Loader/Loader";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
+import toast from "react-hot-toast";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -50,6 +51,7 @@ function App() {
   }, [results]);
 
   const handleSearch = (searchTerm) => {
+    if (searchTerm === query) return toast.error("Already requested..");
     setResults([]);
     setQuery(searchTerm);
     setPage(1);
