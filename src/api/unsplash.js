@@ -19,7 +19,7 @@ export const fetchImages = async (query, page = 1, perPage = 12) => {
     console.log("Fetched images from Unsplash:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching images from Unsplash:", error);
+    console.error("Error fetching images from Unsplash:", error.message);
     throw error;
   }
 };

@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar/SearchBar.jsx";
 import { fetchImages } from "../api/unsplash";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ImageModal from "./ImageModal/ImageModal";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -33,7 +34,7 @@ function App() {
         setTotalPages(apiResponse.total_pages);
       } catch (error) {
         setError(true);
-        console.error(error);
+        setErrorMessage(`Error occurred: ${error.message}`);
       } finally {
         setLoading(false);
       }
@@ -68,6 +69,8 @@ function App() {
       {results.length > 0 && (
         <ImageGallery images={results} openModal={openModal} />
       )}
+
+      {error && <ErrorMessage errorMsg={errorMessage} />}
 
       {imageModalIsOpen && (
         <ImageModal
