@@ -5,6 +5,7 @@ import { fetchImages } from "../api/unsplash";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ImageModal from "./ImageModal/ImageModal";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import Loader from "../Loader/Loader";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -70,6 +71,7 @@ function App() {
         <ImageGallery images={results} openModal={openModal} />
       )}
 
+      {loading && <Loader />}
       {error && <ErrorMessage errorMsg={errorMessage} />}
 
       {imageModalIsOpen && (
