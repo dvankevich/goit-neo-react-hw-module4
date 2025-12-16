@@ -12,24 +12,33 @@ function App() {
   const [results, setResults] = useState([]);
   const [imageModalIsOpen, setImageModalIsOpen] = useState(false);
   const [imageModal, setImageModal] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (query === "") {
       return;
     }
-    const searchImages = async (query) => {
-      try {
-        const images = await fetchImages(query);
-        return images;
-      } catch (error) {
-        console.error("Failed to retrieve images:", error);
-      }
-    };
 
-    searchImages("grogu").then((images) => {
-      console.log(images);
-      setResults(images);
-    });
+    async function getImages() {
+      try {
+        setLoading(true);
+        setError(false);
+        setErrorMessage("");
+        const apiResponse = await fetchImages(query, page);
+        setResults((prevResults) => {
+          return [...prevResults, ...apiResponse.results];
+        });
+        setTotalPages(apiResponse.total_pages);
+      } catch (error) {
+        setError(true);
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getImages();
   }, [query, page]);
 
   // for testing purposes
