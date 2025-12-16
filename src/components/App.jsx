@@ -45,9 +45,20 @@ function App() {
     getImages();
   }, [query, page]);
 
-  // for testing purposes
-  useState(() => {
-    console.log(results);
+  useEffect(() => {
+    // Виконуємо прокрутку, коли результати оновлюються
+    if (results.length > 0) {
+      const halfViewportHeight = window.innerHeight / 2;
+
+      // Прокручування через короткий час
+      setTimeout(() => {
+        window.scrollBy({
+          top: halfViewportHeight,
+          left: 0,
+          behavior: "smooth",
+        });
+      }, 0);
+    }
   }, [results]);
 
   const handleSearch = (searchTerm) => {
