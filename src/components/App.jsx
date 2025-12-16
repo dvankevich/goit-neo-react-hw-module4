@@ -83,6 +83,29 @@ function App() {
     setPage((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    if (page <= 1) return;
+
+    setTimeout(() => {
+      // 500px scroll down
+      // window.scrollBy({
+      //   top: 500,
+      //   behavior: "smooth",
+      // });
+      // ---------------------------
+      // scroll to bottom of the page
+      // window.scrollTo({
+      //   top: document.documentElement.scrollHeight,
+      //   behavior: "smooth",
+      // });
+      window.scrollBy({
+        // window.innerHeight —  100% screen height
+        top: window.innerHeight / 2,
+        behavior: "smooth",
+      });
+    }, 250);
+  }, [page]);
+
   const isEmtpyResults = !loading && query && results.length === 0;
 
   return (
