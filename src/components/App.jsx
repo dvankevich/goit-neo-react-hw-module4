@@ -4,9 +4,9 @@ import SearchBar from "./SearchBar/SearchBar.jsx";
 import { fetchImages } from "../api/unsplash";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ImageModal from "./ImageModal/ImageModal";
-import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
-import Loader from "../Loader/Loader";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
+import ErrorMessage from "./ErrorMessage/ErrorMessage.jsx";
+import Loader from "./Loader/Loader.jsx";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.jsx";
 import toast from "react-hot-toast";
 
 function App() {
@@ -58,22 +58,6 @@ function App() {
     }
     getImages();
   }, [query, page]);
-
-  // useEffect(() => {
-  //   // Виконуємо прокрутку, коли результати оновлюються
-  //   if (results.length > 0) {
-  //     const halfViewportHeight = window.innerHeight / 2;
-
-  //     // Прокручування через короткий час
-  //     setTimeout(() => {
-  //       window.scrollBy({
-  //         top: halfViewportHeight,
-  //         left: 0,
-  //         behavior: "smooth",
-  //       });
-  //     }, 0);
-  //   }
-  // }, [results]);
 
   const handleSearch = (searchTerm) => {
     if (searchTerm === query) return toast.error("Already requested..");
