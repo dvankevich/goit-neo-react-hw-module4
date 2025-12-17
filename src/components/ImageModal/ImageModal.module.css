@@ -22,6 +22,10 @@
   overflow: hidden;
 }
 
+.noScroll {
+  overflow: hidden;
+}
+
 .image {
   display: flex;
   justify-content: center;
