@@ -1,4 +1,4 @@
-.header {
+/* .header {
   padding: 14px;
   background-color: #646cff;
   display: flex;
@@ -8,6 +8,15 @@
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
+} */
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #646cff;
 }
 
 .input {
@@ -16,8 +25,10 @@
   margin-right: 12px;
   padding: 10px;
   border-radius: 4px;
+  text-align: center;
 }
 
 ::placeholder {
-  color: lightblue;
+  color: black;
+  opacity: 0.5;
 }
