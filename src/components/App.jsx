@@ -100,15 +100,10 @@ function App() {
     // scroll to bottom of the app
     setTimeout(() => {
       appRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-      console.log("useEffect for scrolling");
     }, 250);
   }, [page, results]);
 
   const isEmtpyResults = !loading && query && results.length === 0;
-
-  useEffect(() => {
-    console.log("Current results:", results);
-  }, [results]);
 
   return (
     <div className="App" ref={appRef}>

@@ -12,8 +12,6 @@ const SearchBar = ({ onSearch }) => {
     if (searchTerm.length < 3) {
       showToast();
     } else {
-      console.log(`onSubmit(${searchTerm})`);
-
       onSearch(searchTerm);
       form.reset();
     }

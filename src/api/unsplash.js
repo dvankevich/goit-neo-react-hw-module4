@@ -16,7 +16,6 @@ export const fetchImages = async (query, page = 1, perPage = 12) => {
         Authorization: `Client-ID ${apiKey}`,
       },
     });
-    console.log("Fetched images from Unsplash:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching images from Unsplash:", error.message);
