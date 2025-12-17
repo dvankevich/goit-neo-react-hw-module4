@@ -94,15 +94,17 @@ function App() {
       // });
       // ---------------------------
       // scroll to bottom of the page
-      // window.scrollTo({
-      //   top: document.documentElement.scrollHeight,
-      //   behavior: "smooth",
-      // });
-      window.scrollBy({
-        // window.innerHeight —  100% screen height
-        top: window.innerHeight / 2,
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
         behavior: "smooth",
       });
+      // ---------------------------
+      // scroll by 50% of the screen height
+      // window.scrollBy({
+      //   // window.innerHeight —  100% screen height
+      //   top: window.innerHeight / 2,
+      //   behavior: "smooth",
+      // });
     }, 250);
   }, [page]);
 
