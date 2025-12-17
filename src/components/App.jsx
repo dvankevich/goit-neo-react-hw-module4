@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     if (query === "") {
+      setResults([]);
       return;
     }
 
