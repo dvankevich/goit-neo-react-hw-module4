@@ -62,12 +62,13 @@ function App() {
           }
 
           // 3. Відфільтровуємо лише ті, ID яких ще немає у нашому стані
-          const uniqueImages = newImages.filter(
-            (newImg) => !prevResults.some((oldImg) => oldImg.id === newImg.id)
-          );
+          // const uniqueImages = newImages.filter(
+          //   (newImg) => !prevResults.some((oldImg) => oldImg.id === newImg.id)
+          // );
 
           // 4. Додаємо лише унікальні фото до попереднього списку
-          return [...prevResults, ...uniqueImages];
+          // return [...prevResults, ...uniqueImages];
+          return [...prevResults, ...newImages];
         });
 
         setTotalPages(apiResponse.total_pages);
