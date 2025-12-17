@@ -84,11 +84,13 @@ function App() {
   function openModal(img) {
     setImageModal(img);
     setImageModalIsOpen(true);
+    document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
     setImageModal({});
     setImageModalIsOpen(false);
+    document.body.style.overflow = "auto";
   }
 
   const handleLoadMore = () => {

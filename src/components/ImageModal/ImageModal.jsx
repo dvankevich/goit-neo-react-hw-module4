@@ -10,7 +10,7 @@ const ImageModal = ({ isOpen, closeModal, img }) => {
       onRequestClose={closeModal}
       className={css.Modal}
       overlayClassName={css.Overlay}
-      bodyOpenClassName={css.noScroll}
+      //bodyOpenClassName={css.noScroll}
     >
       <h2 className={css.h2}>{img.alt_description}</h2>
       <div className={css.image}>
