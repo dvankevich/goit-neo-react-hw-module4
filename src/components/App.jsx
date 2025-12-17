@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchBar from "./SearchBar/SearchBar.jsx";
 import { fetchImages } from "../api/unsplash";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
@@ -19,6 +19,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const appRef = useRef();
 
   useEffect(() => {
     if (query === "") {
@@ -57,21 +58,21 @@ function App() {
     getImages();
   }, [query, page]);
 
-  useEffect(() => {
-    // Виконуємо прокрутку, коли результати оновлюються
-    if (results.length > 0) {
-      const halfViewportHeight = window.innerHeight / 2;
+  // useEffect(() => {
+  //   // Виконуємо прокрутку, коли результати оновлюються
+  //   if (results.length > 0) {
+  //     const halfViewportHeight = window.innerHeight / 2;
 
-      // Прокручування через короткий час
-      setTimeout(() => {
-        window.scrollBy({
-          top: halfViewportHeight,
-          left: 0,
-          behavior: "smooth",
-        });
-      }, 0);
-    }
-  }, [results]);
+  //     // Прокручування через короткий час
+  //     setTimeout(() => {
+  //       window.scrollBy({
+  //         top: halfViewportHeight,
+  //         left: 0,
+  //         behavior: "smooth",
+  //       });
+  //     }, 0);
+  //   }
+  // }, [results]);
 
   const handleSearch = (searchTerm) => {
     if (searchTerm === query) return toast.error("Already requested..");
@@ -96,28 +97,12 @@ function App() {
 
   useEffect(() => {
     if (page <= 1) return;
-
+    // scroll to bottom of the app
     setTimeout(() => {
-      // 500px scroll down
-      // window.scrollBy({
-      //   top: 500,
-      //   behavior: "smooth",
-      // });
-      // ---------------------------
-      // scroll to bottom of the page
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-      // ---------------------------
-      // scroll by 50% of the screen height
-      // window.scrollBy({
-      //   // window.innerHeight —  100% screen height
-      //   top: window.innerHeight / 2,
-      //   behavior: "smooth",
-      // });
+      appRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+      console.log("useEffect for scrolling");
     }, 250);
-  }, [page]);
+  }, [page, results]);
 
   const isEmtpyResults = !loading && query && results.length === 0;
 
@@ -126,7 +111,7 @@ function App() {
   }, [results]);
 
   return (
-    <>
+    <div className="App" ref={appRef}>
       <SearchBar onSearch={handleSearch} />
       {results.length > 0 && (
         <ImageGallery images={results} openModal={openModal} />
@@ -142,7 +127,7 @@ function App() {
           img={imageModal}
         />
       )}
-    </>
+    </div>
   );
 }
 
