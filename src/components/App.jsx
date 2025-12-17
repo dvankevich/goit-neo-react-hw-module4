@@ -37,14 +37,36 @@ function App() {
         // resolve the key duplication issue
         // Encountered two children with the same key, `7Coo7BwvxmQ`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
 
+        // setResults((prevResults) => {
+        //   // 1. Беремо нові результати з API
+        //   const newImages = apiResponse.results;
+        //   // 2. Відфільтровуємо лише ті, ID яких ще немає у нашому стані
+        //   const uniqueImages = newImages.filter(
+        //     (newImg) => !prevResults.some((oldImg) => oldImg.id === newImg.id)
+        //   );
+        //   // 3. Додаємо лише унікальні фото до попереднього списку
+        //   return [...prevResults, ...uniqueImages];
+        // });
         setResults((prevResults) => {
           // 1. Беремо нові результати з API
           const newImages = apiResponse.results;
-          // 2. Відфільтровуємо лише ті, ID яких ще немає у нашому стані
+
+          // 2. Знаходимо дублікати
+          const duplicates = newImages.filter((newImg) =>
+            prevResults.some((oldImg) => oldImg.id === newImg.id)
+          );
+
+          // Виводимо дублікати у консоль
+          if (duplicates.length > 0) {
+            console.log("Дублікати знайдено:", duplicates);
+          }
+
+          // 3. Відфільтровуємо лише ті, ID яких ще немає у нашому стані
           const uniqueImages = newImages.filter(
             (newImg) => !prevResults.some((oldImg) => oldImg.id === newImg.id)
           );
-          // 3. Додаємо лише унікальні фото до попереднього списку
+
+          // 4. Додаємо лише унікальні фото до попереднього списку
           return [...prevResults, ...uniqueImages];
         });
 
