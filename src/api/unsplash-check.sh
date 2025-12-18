@@ -57,5 +57,5 @@ for ((page=1; page<=TOTAL_PAGES; page++)); do
         echo "Отримані id на сторінці $page: ${ids[@]}"
     fi
     
-    sleep 1  # Пауза 1 секунда між запитами
+    sleep 2  # Пауза в секундах між запитами
 done
