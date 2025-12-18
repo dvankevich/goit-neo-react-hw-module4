@@ -7,7 +7,7 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSubmit = (evt) => {
     const form = evt.target;
-    const searchTerm = form.elements.searchTerm.value.trim();
+    const searchTerm = form.elements.searchTerm.value.trim().toLowerCase();
     evt.preventDefault();
     if (searchTerm.length < 3) {
       showToast();
