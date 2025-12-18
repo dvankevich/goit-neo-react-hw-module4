@@ -102,13 +102,11 @@ function App() {
       {loading && <Loader />}
       {error && <ErrorMessage errorMsg={errorMessage} />}
       {isEmtpyResults && <p>No images found</p>}
-      {imageModalIsOpen && (
-        <ImageModal
-          isOpen={imageModalIsOpen}
-          closeModal={closeModal}
-          img={imageModal}
-        />
-      )}
+      <ImageModal
+        isOpen={imageModalIsOpen}
+        closeModal={closeModal}
+        img={imageModal}
+      />
     </div>
   );
 }

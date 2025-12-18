@@ -4,20 +4,20 @@ import css from "./ImageModal.module.css";
 Modal.setAppElement("#root");
 
 const ImageModal = ({ isOpen, closeModal, img }) => {
+  if (!img) return null;
+  if (!isOpen) return null;
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       className={css.Modal}
       overlayClassName={css.Overlay}
-      //bodyOpenClassName={css.noScroll}
     >
       <h2 className={css.h2}>{img.alt_description}</h2>
       <div className={css.image}>
         <img
           className={css.img}
           src={img.urls.regular}
-          // src={img.urls.full}
           alt={img.alt_description}
         />
       </div>
